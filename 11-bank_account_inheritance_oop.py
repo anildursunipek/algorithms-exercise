@@ -81,6 +81,8 @@ class VadesizHesap(Account):
     def withdrawMoney(self,amount):
         self._fee = amount / 20  # %5 Fee
         self._balance = super().withdrawMoney(amount) - self._fee
+        if not (self._balance > 0):
+            raise ValueError('Balance cannot be less than 0')
         return self._balance
 
     def depositMoney(self,amount):
@@ -99,4 +101,6 @@ c.depositMoney(500)
 print(c)
 c.withdrawMoney(1100)
 c.depositMoney(5000)
+print(c)
+c.withdrawMoney(9060)
 print(c)
