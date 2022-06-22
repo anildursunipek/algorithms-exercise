@@ -26,10 +26,10 @@ void main(){
     scanf("%d",&search_value);
     search = binary_search(array,ARRAY_SIZE,search_value);
     if(search != -1){
-        printf("Aradiginiz deger %d. index'te bulundu",search);
+        printf("\nAradiginiz deger %d. index'te bulundu",search);
     }
     else{
-        printf("Aradiginiz deger bulunamadi");
+        printf("\nAradiginiz deger bulunamadi");
     }
 }
 
@@ -56,26 +56,49 @@ int data_printing(int arr[],int arr_size){
     }
     
 }
-int binary_search(int array[],int array_size,int search_element){
-    int base_stat = 1, max_index, min_index;
-    max_index = array_size-1;
-    min_index = 0;
-
-    while(1){
-        if(search_element == array[(max_index-min_index)/2]){
-            return (max_index-min_index)/2;
-            break;
+void print_index(void){
+    for(int i=0;i < ARRAY_SIZE - 1;i++){
+        printf("%5d",i);
+    }
+    printf("\n");
+    for(int i=0;i < 5 * ARRAY_SIZE;i++){
+        printf("-");
+    }
+    printf("\n");
+}
+void print_search(int array[],int max,int min,int middle){
+    int i=0;
+    for(i;i<=ARRAY_SIZE-1;i++){
+        if(i < min || i > max){
+            printf("     ");
         }
-        else if(search_element < array[(max_index-min_index)/2]){
-            max_index = ((max_index-min_index)/2)-1;
-        }
-        else if(search_element > array[(max_index-min_index)/2]){
-            max_index = ((max_index-min_index)/2)+1;
+        else if(i == middle){
+            printf("%5d*",array[i]);
         }
         else{
-            return -1;
-            break;
+            printf("%5d",array[i]);
         }
     }
-
+    printf("\n");
+}
+int binary_search(int array[],int array_size,int search_element){
+    int max_index, min_index, middle;
+    max_index = array_size-1;
+    min_index = 0;
+    print_index();
+    while(min_index <= max_index){
+        middle= (min_index + max_index) / 2;
+        print_search(array,max_index,min_index,middle);
+        if(search_element == array[middle]){
+            return middle;
+            break;
+        }
+        else if(search_element < array[middle]){
+            max_index = middle-1;
+        }
+        else{
+            min_index = middle+1;
+        }
+    }
+    return -1;
 }
