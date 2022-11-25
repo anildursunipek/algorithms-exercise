@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "puzzle_game/1.0.0": {
+        "runtime": {
+          "puzzle_game.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "puzzle_game/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
